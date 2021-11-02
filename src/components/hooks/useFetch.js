@@ -1,18 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 export const useFetch = (url) => {
+    const isMounted = useRef(true)
     const [state, setstate] = useState({data:null, loading:true, error:null})
+
+    useEffect(() => {
+        //el return de los efectos se realiza cuando el componente se desonta entonces:
+        return () => {
+            isMounted.current = false
+        }
+    }, [])
 
     useEffect(() => {
         setstate({data:null, loading:true, error:null})
         fetch(url)
             .then(resp => resp.json())
             .then(data => {
-                setstate({
-                    loading:false,
-                    error:null,
-                    data
-                })
+
+                    if(isMounted.current){
+                        setstate({
+                            loading:false,
+                            error:null,
+                            data
+                        })
+                    }
             })
     }, [url])
 
