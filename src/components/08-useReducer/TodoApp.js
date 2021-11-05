@@ -59,6 +59,28 @@ export const TodoApp = () => {
 
     //dispatch, disparar acciones al reducer 
 
+    const handleDelete = (todoId)=> {
+        
+        const todoDelete = {
+            id :todoId,
+        }
+
+        const action = {
+            type:'delete',
+            payload: todoDelete
+        }
+
+        dispatch(action)
+
+    }
+
+    const handleToggle = (todoId) => {
+            dispatch({
+                type:'toggle',
+                payload : todoId 
+            })
+    }
+
     return (
         <div>
             <h1>TodoApp ({todos.length})</h1>
@@ -73,11 +95,16 @@ export const TodoApp = () => {
                                         key={each.id}
                                         className='list-group-item'
                                     >
-                                        <p className='text-center'>
+                                        <p className={`${each.done && 'complete'}`}
+                                            onClick = {() => handleToggle(each.id)}
+                                        >
                                                 {index + 1}.{each.desc}
                                         </p>
 
-                                        <button className='btn btn-danger'>
+                                        <button 
+                                            className='btn btn-danger'
+                                            onClick={()=> handleDelete(each.id)}
+                                        >
                                                 Borrar
                                         </button>
                                     </li> 
@@ -103,8 +130,7 @@ export const TodoApp = () => {
                         
                         <button
                             type='submit'
-                            className='btn btn-primary mb-2 btn-block'
-                        >
+                            className='btn btn-primary mb-2 btn-block'                        >
                                 Agregar
                         </button>
                     </form>
