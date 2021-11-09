@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pruebas en <TodoAA/> debe mostrarse correctamente  1`] = `
+<Fragment>
+  <h4>
+    Agregar TODO
+  </h4>
+  <hr />
+  <form
+    className="d-grid gap-2"
+    onSubmit={[Function]}
+  >
+    <input
+      autoComplete="off"
+      name="description"
+      onChange={[Function]}
+      placeholder="¿qué debo hacer?"
+      type="text"
+      value=""
+    />
+    <button
+      className="btn btn-primary mb-2 btn-block"
+      type="submit"
+    >
+      Agregar
+    </button>
+  </form>
+</Fragment>
+`;
